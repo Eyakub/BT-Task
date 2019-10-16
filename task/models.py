@@ -6,7 +6,7 @@ class Gender(models.Model):
     type = models.CharField(max_length=15)
 
     def __str__(self):
-        return str(self.type)
+        return self.type
 
 
 class Name(models.Model):
@@ -15,7 +15,7 @@ class Name(models.Model):
     last = models.CharField(max_length=100)
 
     def __str__(self):
-        return str(self.first)
+        return self.first
 
 
 class Location(models.Model):
@@ -26,63 +26,108 @@ class Location(models.Model):
     postcode = models.ForeignKey(PostCode, related_name='locations', on_delete=models.CASCADE)
     coordinate = models.ForeignKey(Coordinate, related_name='locations', on_delete=models.CASCADE)
     timezone = models.ForeignKey(TimeZone, related_name='locations', on_delete=models.CASCADE)
+    def __str__(self):
+        return self.city.name + self.country.name
 
 
 class Street(models.Model):
     number = models.IntegerField(blank=True, null=True)
     name = models.CharField(max_length=255)
+    def __str__(self):
+        return self.name
 
 
 class City(models.Model):
-    pass
+    name = models.CharField(max_length=255)
+
+    def __str__(self):
+        return self.name
 
 
 class State(models.Model):
-    pass
+    name = models.CharField(max_length=255)
+
+    def __str__(self):
+        return self.name
 
 
 class Country(models.Model):
-    pass
+    name = models.CharField(max_length=255)
+
+    def __str__(self):
+        return self.name
 
 
 class PostCode(models.Model):
-    pass
+    number = models.IntegerField(blank=True, null=True)
+
+    def __str__(self):
+        return self.number
 
 
 class Coordinate(models.Model):
-    pass
+    latitude = models.FloatField(blank=True, null=True)
+    longitude = models.FloatField(blank=True, null=True)
 
 
 class TimeZone(models.Model):
-    pass
+    offset = models.CharField(max_length=50)
+    description = models.CharField(max_length=255)
 
 
 class Email(models.Model):
-    pass
+    email = models.CharField(max_length=255)
+
+    def __str__(self):
+        return self.email
 
 
 class Login(models.Model):
-    pass
+    uuid = models.CharField(max_length=255)
+    username = models.CharField(max_length=255)
+    password = models.CharField(max_length=255)
+    salt = models.CharField(max_length=255)
+    md5 = models.CharField(max_length=255)
+    sha1 = models.CharField(max_length=255)
+    sha256 = models.CharField(max_length=255)
 
 
 class DOB(models.Model):
-    pass
+    date = models.DateTimeField()
+    age = models.IntegerField(null=True, blank=True)
+    
+    def __str__(self):
+        return self.date
 
 
 class Registered(models.Model):
-    pass
+    date = models.DateTimeField(auto_now_add=True)
+    age = models.IntegerField(null=True, blank=True)
+
+    def __str__(self):
+        return self.date
 
 
 class Phone(models.Model):
-    pass
+    phone_no = models.CharField(max_length=100)
+    
+    def __str__(self):
+        return self.phone_no
 
 
 class Cell(models.Model):
-    pass
+    cell_no = models.CharField(max_length=100)
+    
+    def __str__(self):
+        return self.cell_no
 
 
 class ID(models.Model):
-    pass
+    name = models.CharField(max_length=150)
+    value = models.CharField(max_length=150)
+    
+    def __str__(self):
+        return self.name
 
 
 class Picture(models.Model):
@@ -92,4 +137,7 @@ class Picture(models.Model):
 
 
 class NAT(models.Model):
-    pass
+    nat_name = models.CharField(max_length=20)
+    
+    def __str__(self):
+        return self.nat_name
