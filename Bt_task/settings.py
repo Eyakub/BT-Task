@@ -78,7 +78,7 @@ WSGI_APPLICATION = 'Bt_task.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'bt_task',
+        'NAME': 'bt_db',
         'HOST': 'localhost',
         'USER': 'root',
         'PASSWORD': 'mdes',

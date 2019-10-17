@@ -1,5 +1,5 @@
 from django.db import models
-from
+
 
 # Create your models here.
 class Gender(models.Model):
@@ -18,21 +18,10 @@ class Name(models.Model):
         return self.first
 
 
-class Location(models.Model):
-    street = models.ForeignKey(Street, related_name='locations', on_delete=models.SET_NULL)
-    city = models.ForeignKey(City, related_name='locations', on_delete=models.CASCADE)
-    state = models.ForeignKey(State, related_name='locations', on_delete=models.CASCADE)
-    country = models.ForeignKey(Country, related_name='locations', on_delete=models.CASCADE)
-    postcode = models.ForeignKey(PostCode, related_name='locations', on_delete=models.CASCADE)
-    coordinate = models.ForeignKey(Coordinate, related_name='locations', on_delete=models.CASCADE)
-    timezone = models.ForeignKey(TimeZone, related_name='locations', on_delete=models.CASCADE)
-    def __str__(self):
-        return self.city.name + self.country.name
-
-
 class Street(models.Model):
     number = models.IntegerField(blank=True, null=True)
     name = models.CharField(max_length=255)
+
     def __str__(self):
         return self.name
 
@@ -128,6 +117,19 @@ class ID(models.Model):
     
     def __str__(self):
         return self.name
+
+
+class Location(models.Model):
+    street = models.ForeignKey(Street, related_name='locations', on_delete=models.CASCADE)
+    city = models.ForeignKey(City, related_name='locations', on_delete=models.CASCADE)
+    state = models.ForeignKey(State, related_name='locations', on_delete=models.CASCADE)
+    country = models.ForeignKey(Country, related_name='locations', on_delete=models.CASCADE)
+    postcode = models.ForeignKey(PostCode, related_name='locations', on_delete=models.CASCADE)
+    coordinate = models.ForeignKey(Coordinate, related_name='locations', on_delete=models.CASCADE)
+    timezone = models.ForeignKey(TimeZone, related_name='locations', on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.city.name + self.country.name
 
 
 class Picture(models.Model):
