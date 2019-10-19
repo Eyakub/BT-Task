@@ -19,12 +19,14 @@ class Index(View):
 
         gender = Gender()
         gender.type = random_user.get('results')[0]['gender']
+        print(gender.type)
+        gender.save()
 
         name = Name()
         name.title = random_user.get('results')[0]['name']['title']
         name.first = random_user.get('results')[0]['name']['first']
         name.last = random_user.get('results')[0]['name']['last']
-
+        name.save()
 
         street = Street()
         street.number = random_user.get('results')[0]['location']['street']['number']
