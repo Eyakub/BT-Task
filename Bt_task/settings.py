@@ -81,7 +81,8 @@ DATABASES = {
         'NAME': 'bt_db',
         'HOST': 'localhost',
         'USER': 'root',
-        'PASSWORD': '',
+        'PASSWORD': 'mdes',
+        'OPTIONS': {'charset': 'utf8mb4'},
     }
 }
 
