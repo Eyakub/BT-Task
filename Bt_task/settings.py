@@ -81,7 +81,7 @@ DATABASES = {
         'NAME': 'bt_db',
         'HOST': 'localhost',
         'USER': 'root',
-        'PASSWORD': 'mdes',
+        'PASSWORD': '',
     }
 }
 

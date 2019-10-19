@@ -20,7 +20,7 @@ class Index(View):
         name.title = random_user.get('results')[0]['name']['title']
         name.first = random_user.get('results')[0]['name']['first']
         name.last = random_user.get('results')[0]['name']['last']
-
+        print(name)
         return HttpResponse('hi there')
 
     def post(self, request):
