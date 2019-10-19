@@ -13,7 +13,16 @@ from pickle import dumps
 # Create your views here.
 class Index(View):
     def get(self, request):
+        return render(request, 'list.html')
         
+
+        return HttpResponse('hi there')
+    def post(self, request):
+        pass
+
+
+class GetRandomUserData(View):
+    def get(self, request):
         for i in range(100):
             random_user = requests.get('https://randomuser.me/api/')
             random_user = random_user.json()
@@ -23,14 +32,6 @@ class Index(View):
             print(gender.type)
             gender.save()
 
-<<<<<<< HEAD
-        name = Name()
-        name.title = random_user.get('results')[0]['name']['title']
-        name.first = random_user.get('results')[0]['name']['first']
-        name.last = random_user.get('results')[0]['name']['last']
-        print(name)
-        return HttpResponse('hi there')
-=======
             name = Name()
             name.title = random_user.get('results')[0]['name']['title']
             name.first = random_user.get('results')[0]['name']['first']
@@ -78,7 +79,6 @@ class Index(View):
             location.timezone = get_object_or_404(TimeZone, pk=timezone.id)
             location.save()
 
->>>>>>> 5960539a31dc93e91f0c09f0eb34e4baeb0c4f48
 
             email = Email()
             email.email = random_user.get('results')[0]['email']
@@ -126,7 +126,8 @@ class Index(View):
             nat = NAT()
             nat.nat_name = random_user.get('results')[0]['nat']
             nat.save()
-
-        return HttpResponse('hi there')
-    def post(self, request):
-        pass
+        response = {
+            'status': True,
+            'message': 'Succesfully saved random 100 used data from API'
+        }
+        return JsonResponse(response, status=200)
