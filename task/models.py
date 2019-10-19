@@ -3,16 +3,16 @@ from django.db import models
 
 # Create your models here.
 class Gender(models.Model):
-    type = models.CharField(max_length=15)
+    type = models.CharField(max_length=15, null=True)
 
     def __str__(self):
         return self.type
 
 
 class Name(models.Model):
-    title = models.CharField(max_length=20)
-    first = models.CharField(max_length=100)
-    last = models.CharField(max_length=100)
+    title = models.CharField(max_length=20, null=True)
+    first = models.CharField(max_length=100, null=True)
+    last = models.CharField(max_length=100, null=True)
 
     def __str__(self):
         return self.first
@@ -20,35 +20,35 @@ class Name(models.Model):
 
 class Street(models.Model):
     number = models.IntegerField(blank=True, null=True)
-    name = models.CharField(max_length=255)
+    name = models.CharField(max_length=255, null=True)
 
     def __str__(self):
         return self.name
 
 
 class City(models.Model):
-    name = models.CharField(max_length=255)
+    name = models.CharField(max_length=191, null=True)
 
     def __str__(self):
         return self.name
 
 
 class State(models.Model):
-    name = models.CharField(max_length=255)
+    name = models.CharField(max_length=255, null=True)
 
     def __str__(self):
         return self.name
 
 
 class Country(models.Model):
-    name = models.CharField(max_length=255)
+    name = models.CharField(max_length=255, null=True)
 
     def __str__(self):
         return self.name
 
 
 class PostCode(models.Model):
-    number = models.IntegerField(blank=True, null=True)
+    number = models.CharField(max_length=100, null=True)
 
     def __str__(self):
         return self.number
@@ -60,25 +60,25 @@ class Coordinate(models.Model):
 
 
 class TimeZone(models.Model):
-    offset = models.CharField(max_length=50)
-    description = models.CharField(max_length=255)
+    offset = models.CharField(max_length=50, null=True)
+    description = models.CharField(max_length=255, null=True)
 
 
 class Email(models.Model):
-    email = models.CharField(max_length=255)
+    email = models.CharField(max_length=255, null=True)
 
     def __str__(self):
         return self.email
 
 
 class Login(models.Model):
-    uuid = models.CharField(max_length=255)
-    username = models.CharField(max_length=255)
-    password = models.CharField(max_length=255)
-    salt = models.CharField(max_length=255)
-    md5 = models.CharField(max_length=255)
-    sha1 = models.CharField(max_length=255)
-    sha256 = models.CharField(max_length=255)
+    uuid = models.CharField(max_length=255, null=True)
+    username = models.CharField(max_length=255, null=True)
+    password = models.CharField(max_length=255, null=True)
+    salt = models.CharField(max_length=255, null=True)
+    md5 = models.CharField(max_length=255, null=True)
+    sha1 = models.CharField(max_length=255, null=True)
+    sha256 = models.CharField(max_length=255, null=True)
 
 
 class DOB(models.Model):
@@ -98,22 +98,22 @@ class Registered(models.Model):
 
 
 class Phone(models.Model):
-    phone_no = models.CharField(max_length=100)
+    phone_no = models.CharField(max_length=100, null=True)
     
     def __str__(self):
         return self.phone_no
 
 
 class Cell(models.Model):
-    cell_no = models.CharField(max_length=100)
+    cell_no = models.CharField(max_length=100, null=True)
     
     def __str__(self):
         return self.cell_no
 
 
 class ID(models.Model):
-    name = models.CharField(max_length=150)
-    value = models.CharField(max_length=150)
+    name = models.CharField(max_length=150, null=True)
+    value = models.CharField(max_length=150, null=True)
     
     def __str__(self):
         return self.name
@@ -133,13 +133,13 @@ class Location(models.Model):
 
 
 class Picture(models.Model):
-    large = models.CharField(max_length=300)
-    medium = models.CharField(max_length=300)
-    thumbnail = models.CharField(max_length=300)
+    large = models.CharField(max_length=300, null=True)
+    medium = models.CharField(max_length=300, null=True)
+    thumbnail = models.CharField(max_length=300, null=True)
 
 
 class NAT(models.Model):
-    nat_name = models.CharField(max_length=20)
+    nat_name = models.CharField(max_length=20, null=True)
     
     def __str__(self):
         return self.nat_name
